@@ -1,0 +1,63 @@
+document.addEventListener("DOMContentLoaded", function () {
+
+    $("#formCreate").validate({
+        ignore: ".ignore, .select2-input",
+        focusInvalid: false,
+        rules: {
+            "RazaoSocial": {
+                required: true
+            },
+            "CNPJ": {
+                cnpj: true,
+                required: true
+            }
+        },
+        // Errors
+        errorPlacement: function errorPlacement(error, element) {
+            var $parent = $(element).parents(".error-placeholder");
+            // Do not duplicate errors
+            if ($parent.find(".jquery-validation-error").length) {
+                return;
+            }
+            $parent.append(
+                error.addClass("jquery-validation-error small form-text invalid-feedback")
+            );
+        },
+        highlight: function (element) {
+            var $el = $(element);
+            //var $parent = $el.parents(".error-placeholder");
+            $el.addClass("is-invalid");
+            // Select2 and Tagsinput
+            if ($el.hasClass("select2-hidden-accessible") || $el.attr("data-role") === "tagsinput") {
+                $el.parent().addClass("is-invalid");
+            }
+        },
+        unhighlight: function (element) {
+            $(element).removeClass("is-invalid");
+        },
+        submitHandler: function (form) {
+
+            var ativo = document.getElementsByName("IsAtivo");
+
+            var url = "/Empresa/SaveData";
+            var json = '{';
+            json += '"RazaoSocial": "' + $("#RazaoSocial").val() + '",';
+            json += '"NomeFantasia": "' + $("#NomeFantasia").val() + '",';
+            json += '"IsAtivo": ' + ativo[0].checked + ',';
+            json += '"CNPJ": "' + $("#CNPJ").val() + '"';
+            json += '}';
+
+            $().AjaxPostCustom(url, json, true, function (result) {
+                if (result.erro == "false") {
+                    window.location.href = '../Empresa/Edit/?id=' + result.id +"&dadosSalvo=true";
+                }
+                else {
+                    $().MensagemPadrao(result.mensagemErro, "danger");
+                }
+            });
+
+        }
+    });
+});
+
+

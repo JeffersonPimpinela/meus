@@ -1,0 +1,32 @@
+update-database para criar ou atualizar o banco de dados
+add-migration para criar o migrations
+
+
+
+200.240.241.92:3389  conexão remota IQG
+Administrator user
+Iqg_2023	senha
+
+
+
+  "ConnectionStrings": {
+    //"Database": "Data Source=200.240.241.92,1436;Initial Catalog=DbQuality;UID=sa;PWD=teste_123; integrated security=false;MultipleActiveResultSets=False;integrated security=false;TrustServerCertificate=True;",
+    "Database": "Server=DESKTOP-JIOTK3F\\SQLEXPRESS;Database=DbQuality;Trusted_Connection=True;TrustServerCertificate=True;MultipleActiveResultSets=True"
+    //"Database": "Data Source=200.240.241.92,1436;Initial Catalog=DbQuality;UID=sa;PWD=Iqg_2023;TrustServerCertificate=True"
+
+
+
+    $("#Fone")
+        .mask("(99) 99999-9999")
+        .focusout(function (event) {
+            var target, phone, element;
+            target = (event.currentTarget) ? event.currentTarget : event.srcElement;
+            phone = target.value.replace(/\D/g, '');
+            element = $(target);
+            element.unmask();
+            if (phone.length > 10) {
+                element.mask("(99) 99999-9999?");
+            } else {
+                element.mask("(99) 9999-9999?");
+            }
+        });

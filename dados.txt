@@ -1,0 +1,16 @@
+visual studio 2022
+microsoft menegemnet studio 18.9.1
+postman
+mongo db compass
+
+user = jefferson.pimpinela@outlook.com
+
+
+CONTAZEN: 177.185.15.253,1436
+usuário: contazenprod
+senha: Junior2511
+
+Wyntech
+20.226.68.97,1433
+sa
+Teste@123
